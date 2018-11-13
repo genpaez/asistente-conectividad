@@ -80,9 +80,10 @@ public class SearchController {
     }
      
     @PostMapping(path = "/api/canales")
-    public @ResponseBody List<?> findCanal(@RequestBody Servicio_vpnip servicio){
+    public @ResponseBody List<?> findCanal(@RequestBody Servicio servicio){   // @RequestBody Servicio_vpnip servicio
 		
-    	List<?> servicios = serviciosRepository.findServicioSede(servicio.getServpnip_id()); 
+  
+    	List<?> servicios = serviciosRepository.findServicioSede(servicio.getServicio_sede());  //
     	return servicios;
     }
     
