@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "canal")
+@Table(name = "tb_servicio_vpnip")
 public class Canal { //Serializable*
 	
 	@Id
@@ -24,10 +24,6 @@ public class Canal { //Serializable*
     String sede;
 	@Column(name = "canal")
     String canal;
-	@Column(name = "ip_pe")
-    String ip_pe;
-	@Column(name = "nombre_pe")
-    String nombre_pe;
 	@Column(name = "ipwan_pe")
     String ipwan_pe;
 	@Column(name = "puerto_pe")
