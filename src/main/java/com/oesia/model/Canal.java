@@ -14,12 +14,12 @@ public class Canal { //Serializable*
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idcanal", unique = true, nullable = false)
+	@Column(name = "servpnip_id", unique = true, nullable = false)
 	int id;
-	@Column(name = "cliente")
-    String cliente;
-	@Column(name = "ciudad")
-    String ciudad;
+	@Column(name = "servpnip_pe")
+    String servpnip_pe;
+	@Column(name = "servpnip_servicio")
+    String servpnip_servicio;
 	@Column(name = "sede")
     String sede;
 	@Column(name = "canal")
@@ -94,21 +94,6 @@ public class Canal { //Serializable*
 		this.canal = canal;
 	}
 	
-	public String getIp_pe() {
-		return ip_pe;
-	}
-
-	public void setIp_pe(String ip_pe) {
-		this.ip_pe = ip_pe;
-	}
-
-	public String getNombre_pe() {
-		return nombre_pe;
-	}
-
-	public void setNombre_pe(String nombre_pe) {
-		this.nombre_pe = nombre_pe;
-	}
 
 	public String getIpwan_pe() {
 		return ipwan_pe;
