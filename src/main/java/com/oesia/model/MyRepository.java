@@ -23,7 +23,13 @@ public interface MyRepository extends CrudRepository<Canal, Integer>{
 	@Query(value ="SELECT * FROM canal WHERE cliente = ?1 AND ciudad = ?2 AND sede = ?3 GROUP BY canal", nativeQuery = true)
 	List<Canal> findBySedeClienteCanal(String cliente, String ciudad, String sede);
 	
-	@Query(value ="SELECT * FROM canal WHERE cliente = ?1 AND ciudad = ?2 AND sede = ?3 AND canal = ?4 GROUP BY canal", nativeQuery = true)
-	Canal findVias(String cliente, String ciudad, String sede, String canal);
+	
+	
+	@Query(value ="SELECT * FROM tb_servicio_vpnip WHERE servpnip_id = ?1 GROUP BY servpnip_id", nativeQuery = true)
+	Canal findVias(int servpnip_id);
+
+	@Query(value ="SELECT pe_nombre, pe_ip FROM tb_nodo_pe WHERE pe_id = ?1 GROUP BY pe_id", nativeQuery = true)	
+	Canal findPe(int pe_id);
 
 }
+

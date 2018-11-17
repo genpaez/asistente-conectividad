@@ -8,6 +8,7 @@ import com.oesia.model.ClienteRepository;
 import com.oesia.model.Compositor;
 import com.oesia.model.Executor;
 import com.oesia.model.MyRepository;
+import com.oesia.model.Pe;
 import com.oesia.model.PortFR;
 import com.oesia.model.PortRadius;
 import com.oesia.model.SearchCriteria;
@@ -90,18 +91,28 @@ public class SearchController {
     @PostMapping(path = "/api/vias")
     public Canal findVias(@RequestBody Canal canal){
 		
-    	Canal vias = myRepository.findVias(canal.getCliente(), canal.getCiudad(), canal.getSede(), canal.getCanal());
+    	Canal vias = myRepository.findVias(canal.getId());
     	return vias;
     }
+    
+    @PostMapping(path = "/api/pe")
+    public Canal findPe(@RequestBody Pe pe){
+		
+    	Canal vias = myRepository.findPe(pe.getPe_id());
+    	return vias;
+    }
+    
+    
+    
     
     @PostMapping(path = "/api/pruebasmpls")
     public List<String> pruebasMpls(@RequestBody Canal canal) throws IOException, JSchException, InterruptedException{
     	
-    	PortFR man = new PortFR(canal.getIp_pe());
+    	PortFR man = new PortFR(canal.getIppe()); // prueba, no está mapeado a la tabla
         Compositor myComposer = new Compositor();  
         man.conectar();
 
-    	List<String> comandos = myComposer.crearComandos(canal.getNombre_pe(), canal.getVprn(), canal.getIpwan_pe(), canal.getIpwan_router(), canal.getPuerto_pe(), canal.getEnrutamiento());
+    	List<String> comandos = myComposer.crearComandos(canal.getNombrepe(), canal.getVprn(), canal.getIpwan_pe(), canal.getIpwan_router(), canal.getPuertope(), canal.getEnrutamiento());
     	List<String> respuestape = man.execute(comandos);	
     	man.close();
     	return respuestape;

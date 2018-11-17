@@ -17,6 +17,7 @@ public class Pe {
 	int pe_id;
 	@Column(name = "pe_ip")
     String pe_ip;
+	
 	@Column(name = "pe_nombre")
     String pe_nombre;
 	

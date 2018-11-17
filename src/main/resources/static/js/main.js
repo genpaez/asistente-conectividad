@@ -147,13 +147,17 @@ function ajax_canal(sede) {      // onchange en select boxes
 
 
 
-function ajax_vias(cliente, ciudad, sede, canal) {      // onchange en select boxes
+function ajax_vias(idcanal) {      // onchange en select boxes
 	
 	var vias = {}
-	vias["cliente"] = cliente;
-	vias["ciudad"] = ciudad;
-	vias["sede"] = sede;
-	vias["canal"] = canal;
+	vias["id"] = idcanal;
+	
+	var nombrepe;
+	var ippe;
+	
+//	vias["ciudad"] = ciudad;
+//	vias["sede"] = sede;
+//	vias["canal"] = canal;
 	
 //	var search = {}
 //    search["nombre"] = $("#username").val();	
@@ -173,10 +177,10 @@ function ajax_vias(cliente, ciudad, sede, canal) {      // onchange en select bo
             $("#clipboardrouter").hide();
         		},
     		}).then(function(data) {
-    			$('#nombrepe').html('');
-    			$('#nombrepe').text(data.nombre_pe);
-    			$('#ippe').html('');
-    			$('#ippe').append(data.ip_pe);
+    //			$('#nombrepe').html('');
+    //			$('#nombrepe').text(data.nombre_pe);
+    //			$('#ippe').html('');
+    //			$('#ippe').append(data.ip_pe);
     			$('#ipwanpe').html('');
     			$('#ipwanpe').append(data.ipwan_pe);
     			$('#ipwanrouter').html('');
@@ -191,11 +195,39 @@ function ajax_vias(cliente, ciudad, sede, canal) {      // onchange en select bo
     			$('#loopback').append(data.loopback);
     			$('#vprn').html('');
     			$('#vprn').append(data.vprn);
+    			nombrepe = data.nombrepe;
+    			ippe = data.ippe;
     		});
     
-
+		//		$('#nombrepe').html('');
+		//		$('#nombrepe').text(data.nombre_pe);
+		//		$('#ippe').html('');
+		//		$('#ippe').append(data.ip_pe);
+    			ajax_pe(nombrepe, ippe); 
 }
 
+
+function ajax_pe(nombrepe, ippe){
+	
+	var pe = {}
+	pe["pe_id"] = ippe;
+	pe["pe_nombre"] = nombrepe;
+	
+    $.ajax({
+    	type: "POST",
+        contentType: "application/json",
+        url: "/api/pe",
+        data: JSON.stringify(pe),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+    		}).then(function(data) {
+    			$('#nombrepe').html('');
+    			$('#nombrepe').text(data.pe_nombre);
+    			$('#ippe').html('');
+    			$('#ippe').append(data.ippe);
+    		});	
+}
 
 
 
